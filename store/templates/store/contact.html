@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+<div class="contact">
+    <div class="contact__title light300italic">Contacta con nosotras</div>
+   
+    <form method="post"> 
+        {% csrf_token %}
+        
+        <table>
+          {{ form.as_table }}
+        </table>
+        
+        <button id="contactFormSubmit" type="submit">
+          Enviar</button>
+    </form>
+    
+</div>
+
+
+
+{% endblock %}

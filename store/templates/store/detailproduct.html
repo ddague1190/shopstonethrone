@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+<div class="modal">
+
+    <h2 class="modal__content--title">{{object.title}}</h2>
+    <span id="closeModal">&#10005</span>
+
+    <div class="modal__content">
+    
+        <div class="modal__content--pictures">
+            {% for pic in object.images.all%}   
+            {% if pic.isMainPicture %}
+
+            <div class="modal__content--pictures-main">
+
+                <img id="main" src="{{pic.image.url}}" alt="">
+
+            </div>
+            {% endif %}
+            {% endfor %}
+
+            <div class="modal__content--pictures-thumbnails">
+                {% for pic in object.images.all%}   
+                <div class="modal__content--pictures-thumbnails-wrapper">
+                    <img class="thumbnails" src="{{pic.image.url}}" alt="">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <ul class="modal__content--description">
+            <span>{{object.description}}</span>
+            <li>Price: ${{object.price}}</li>
+            {% if object.subtype %}
+            <li>Type: {{object.subtype}}</li>
+            {% endif %}
+            {% if object.model %}
+            <li>Mfg / Model: {{object.manufacturer|default:"N/A"}} / {{object.model|default:"N/A"}}</li>
+            {% endif %}
+            <li>Sizes in stock:
+                <div class="sizeSelector">
+                    {% for size in object.sizesAvailable_as_list %}
+                    <div class="sizeSelector__switch">
+                        <label for="sizeSelector__switch--{{size}}">{{size}}</label>
+                        <input type="checkbox" data-size = "{{size}}" id="sizeSelector__switch--{{size}}">
+                    </div>
+                    {% endfor %}
+                </div>
+            </li>
+        </ul>          
+    </div>
+    <div class="modal__content--addToCart">
+        <a id="addToCart" data-product-number= "{{object.id}}"href="">Add to Cart</a>
+    </div>
+</div>
+
+<script>
+    let modal = document.querySelector('.modal');
+    modal.style.display = 'block';
+    closeModal(modal);
+    
+</script>
+
+
+
+
+{% endblock %}

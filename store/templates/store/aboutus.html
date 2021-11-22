@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="aboutus">
+
+    <div class="aboutus__header">
+        <div class="aboutus__header--picture">
+            <img class="aboutus__header--picture--bubble" src="{% static 'store/img/porfavor.png' %}" alt="">
+            <img src="{% static 'store/img/seal_rock.jpeg' %}" alt="" class="aboutus__header--picture--seal">
+        </div>
+        <div class="aboutus__header--intro">
+        
+            <span>
+                Los sombreros y las mochilas no son imprescindibles. Pero hacen la vida más fácil. Los sombreros nos hacen un poco más altos. Y las mochilas hacen que nuestras manos sean un poco más libres.
+            </span>    
+            <span>Nuestras mochilas están hechas a mano en Chia a partir de un equipo formado por décadas de experiencia. Durará toda una vida.
+            </span>
+            <span>
+                Nuestros sombreros se personalizarán localmente, pero se obtendrán de muchas fuentes diferentes. Solo venderemos sombreros de excelente calidad y gran utilidad. Nuestro precio será justo.
+            </span>
+            <span>
+                Esperamos verte pronto.
+            </span>
+        </div>
+    </div>
+        <div class="aboutus__production">
+      
+            <div class="aboutus__production--intro">
+                <span class="aboutus__production--intro-title light300italic">Producción ética</span>
+                <span>
+                    Como muchos de ustedes, nos volvemos más conscientes del impacto ambiental y social a largo plazo de nuestra toma de decisiones diaria. Como empresa, queremos hacer lo correcto.
+                </span>    
+                <span>
+                    Initially, this has meant partnering only with suppliers which meet our standards of sustainability and ethical business practices.
+                </span>
+                    Eventualmente, es nuestra intención fabricar los sombreros en casa desde cero.
+                <span>
+                    
+                </span>
+            </div>
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="none">
+            <polygon points="0,150 200,0 200,200 0,200"/>
+          </svg>
+        </div>
+
+
+      
+        <div class="aboutus__profit">
+          
+            <div class="aboutus__profit--picture">
+                <img src="{% static 'store/img/dog_rock.jpg' %}" alt="" class="">
+            </div>
+
+            <div class="aboutus__profit--picture2">
+                <img src="{% static 'store/img/dogpic.jpeg' %}" alt="" class="">
+            </div>
+
+            <div class="aboutus__profit--intro">
+                <span class="aboutus__profit--intro-title light300italic">Las motivaciones correctas</span>
+                <span>
+                Cantidad de dinero donado a los refugios de rescate de perros de Chia hasta ahora:                
+                </span>    
+                <span id="donations">$0</span>
+                <span>
+                    A medida que tengamos una mejor idea de cuánto cuesta administrar el negocio, podremos publicar exactamente cuánto dinero de cada venta se destina a la caridad.
+                </span>
+            </div>
+         
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="none">
+                <polygon points="200,0 200,200 0,200"/>
+              </svg>
+           
+        </div>
+     
+</div>
+
+
+{% endblock %}

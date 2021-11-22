@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+{% load tags %}
+
+
+
+
+
+{% block content %}
+
+<content class="caps">
+
+    <div class='card__filter'>
+
+        {{filter.form}}
+
+    </div>
+
+
+
+
+    <div class="caps__grid">
+            {% for item in caps_list %}
+
+<!-- cards -->
+            <div class="card" data-product-number="{{item.id}}">
+
+                {% for pic in item.images.all%}
+
+                {% if pic.isMainPicture %}
+                <div class="card__image">
+                    <img class="card__image--picture" src="{{pic.image.url}}"  alt="">
+                </div>
+                {% endif %}
+
+                {% endfor %}
+
+                <div class="card__title light300italic">
+                    {{item.title}}
+                </div>
+                <div class="card__price">
+                    ${{item.price}}
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="none">
+                    <polygon points="200,0 200,200 130,200"/>
+                  </svg>
+            </div>
+
+            {% endfor %}
+        </div>
+   
+
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?{% param_replace page=1 %}">Primera</a>
+    {% if page_obj.previous_page_number != 1 %}
+      <a href="?{% param_replace page=page_obj.previous_page_number %}">Previa</a>
+                {% endif %}
+                {% endif %}
+
+        
+                <span class="current">
+                     {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                </span>
+        
+                {% if page_obj.has_next %}
+                {% if page_obj.next_page_number != paginator.num_pages %}
+                <a href="?{% param_replace page=page_obj.next_page_number %}">Próxima</a>
+              {% endif %}
+              <a href="?{% param_replace page=paginator.num_pages %}">Última</a>
+                {% endif %}
+            </span>
+
+            </span>
+        </div>
+
+
+ 
+   
+ 
+</content> 
+
+
+{% endblock %}
