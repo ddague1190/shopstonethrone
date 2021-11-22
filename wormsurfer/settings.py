@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import django_on_heroku
 import logging
 from pathlib import Path
 import os
@@ -26,8 +27,6 @@ SECRET_KEY = 'xs)!rwj1!r9kt8kx3nmcob*3bn27_f8pl)ta0*a2818%*r=2*&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 
 
 # Application definition
@@ -191,3 +190,6 @@ AWS_ACCESS_KEY_ID = 'AKIAXAL67ERBLF2YL5WB'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_SES_REGION_NAME = 'us-east-1'
 AWS_SES_REGION_ENDPOINT = 'email.us-east-1.amazonaws.com'
+
+
+django_on_heroku.settings(locals())
