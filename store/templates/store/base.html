@@ -1,0 +1,136 @@
+{% load static %}
+{% load tags %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <link rel="shortcut icon" type="image/jpg" href="{% static 'store/img/bwlogo.png' %}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="{% static 'store/css/style.css' %}" rel="stylesheet" type="text/css" />
+
+        
+
+        <script src="{% static 'store/JS/script.js' %}" async defer></script>
+
+    </head>
+
+    <body>
+        <header class="header">   
+            <a href="{% url 'index' %}" class="header__title">
+                Stonethrone
+            </a>
+
+       
+            <div class="header__logo">
+                <a href="{% url 'contact' %}" class="header__logo--contact">
+                    <img src="{% static 'store/img/mail.png' %}" alt="">
+                </a>
+                <a href="{% url 'cart' %}" class="header__logo--cart">
+                    <img src="{% static 'store/img/cart.png' %}" alt="">
+                    <span class="header__logo--cart-itemsInCart itemsInCart">0</span>
+                </a>
+            </div>  
+            <nav>
+                <ul class="tabs group">
+                    <li class="fileTab" id="tab1"><a href="{% url 'caps' %}">Cachucha</a></li> 
+                    <li class="fileTab" id="tab2"><a href="{% url 'backpacks' %}">Morral</a></li>
+                    <li class="fileTab" id="tab3">
+                        <a href="{% url 'otherhats' %}">Sombreros y mas
+                        </a>
+                    </li>  
+                    <li class="fileTab" id="tab4"><a href="{% url 'custom' %}">Servicios</a></li>
+                    <li class="fileTab" id="tab5"><a href="{% url 'aboutus' %}">Sobre nosotros</a></li>             
+                </ul>
+
+            </nav>
+
+            {% if messages %}
+                <ul class="header__messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+        </header>
+        <div id="loader"></div>
+
+
+
+        {% block content %}
+        
+        <div class="newHeights">
+            <div class="newHeights__felicidad">
+                <img src="{% static 'store/img/fiestas.png' %}" alt="">
+            </div>
+            <div class="newHeights__doggy">
+                <img src="{% static 'store/img/helpjack.png' %}" alt="">
+                <img src="{% static 'store/img/dogpic.jpg' %}" alt="">
+            </div>
+        </div>
+
+       
+       
+            {% endblock content %}
+
+            <footer class="footer">
+                <a href="{% url 'custom' %}">
+                    Servicios Personalizados
+                </a>
+                <a href="{% url 'aboutus' %}">
+                    Sobre nosotros
+                </a>
+                <div class="footer__copyright">
+                   Stonethrone &copy; 2021
+                </div>
+
+            </footer>
+
+        <div class="modal">
+            <div class="modal__content--alert">
+                <span></span>
+            </div>
+
+            <span id="closeModal">&#10005</span> 
+        
+            <div class="modal__content">
+            
+                <div class="modal__content--pictures">
+        
+                    <div class="modal__content--pictures-main">
+                        <label>
+                            <input type="checkbox">
+                            <img id="main" src="" alt="">
+                        </label>
+                    </div>
+
+        
+                    <div class="modal__content--pictures-thumbnails"> 
+                    </div>
+                </div>
+        
+                <div class="modal__content--description">
+                    <div class="modal__content--description-1">
+                        <div class="modal__content--title light300italic"></div>
+                        <div id="description"></div>
+                    </div>
+                    <div class="modal__content--description-2">
+                        <div id="descriptors"></div>
+                        <div class="sizeSelector__container">
+                        </div>
+                    </div>
+                </div>          
+            </div>
+            <div class="modal__content--addToCart">
+                <a id="addToCart" class="bold700italic" href="">Añadir al carrito
+                </a>
+            </div>
+        </div>
+    </body>
+</html>

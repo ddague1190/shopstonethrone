@@ -72,7 +72,7 @@ class OtherHatsList(FilterView):
 
 
 def index(request):
-    return render(request, 'base.html')
+    return render(request, 'store/base.html')
 
 
 def custom(request):
