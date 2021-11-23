@@ -13,4 +13,9 @@ urlpatterns = [
     path('cart', views.cart, name='cart'),
     path('product/<pk>', views.ProductDetailView.as_view(), name='detailproduct'),
     path('contact', views.contact, name='contact')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+
+if settings.DEBUG is True:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
