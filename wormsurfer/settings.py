@@ -1,4 +1,5 @@
 import django_on_heroku
+
 import logging
 from pathlib import Path
 import os
