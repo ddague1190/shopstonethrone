@@ -1,0 +1,26 @@
+.caps {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+
+  &__grid {
+    width: 100%;
+    background-color: #e6eec896;
+    display: grid;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 1rem 0;
+    gap: 5px;
+    grid-template-columns: repeat(auto-fit, 13rem);
+
+    @media only screen and (max-width: 420px) {
+      grid-template-columns: repeat(auto-fit, 16rem);
+    }
+  }
+
+  &__filtering {
+    margin-left: auto;
+  }
+}
