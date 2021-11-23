@@ -25,10 +25,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# ALLOWED_HOSTS = ['secure-lowlands-39459.herokuapp.com']
+ALLOWED_HOSTS = ['secure-lowlands-39459.herokuapp.com']
 
-
-ALLOWED_HOSTS = ['*']
 
 SECRET_KEY = config('SECRET_KEYst')
 
@@ -239,7 +237,7 @@ LOGGING = {
             'propagate': True,
             'level': 'DEBUG',
         },
-        'MYAPP': {
+        'wormsurfer': {
             'handlers': ['file'],
             'level': 'DEBUG',
         },
