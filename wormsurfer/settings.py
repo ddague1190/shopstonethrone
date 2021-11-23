@@ -22,6 +22,8 @@ from decouple import config
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+ALLOWED_HOSTS = ['secure-lowlands-39459.herokuapp.com']
+
 SECRET_KEY = config('SECRET_KEYst')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -83,7 +85,7 @@ WSGI_APPLICATION = 'wormsurfer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
 
@@ -131,8 +133,6 @@ STATICFILES_FINDERS = [
     'sass_processor.finders.CssFinder',
     'pipeline.finders.PipelineFinder'
 ]
-
-# TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 
 COMPRESS_ENABLED = True
@@ -208,7 +208,7 @@ AWS_DEFAULT_ACL = None
 # ]
 # STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
@@ -225,7 +225,7 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = (
 #     os.path.join(PROJECT_DIR, 'static/'),
 # )
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
