@@ -14,6 +14,19 @@ import django_on_heroku
 import logging
 from pathlib import Path
 import os
+from os import environ
+# import dotenv
+from decouple import config
+
+
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_HSTS_SECONDS = 31536000
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# CSRF_COOKIE_SECURE = True
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,13 +34,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xs)!rwj1!r9kt8kx3nmcob*3bn27_f8pl)ta0*a2818%*r=2*&'
+SECRET_KEY = config('SECRET_KEYst')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = config('DEBUG_VALUE') == 'TRUE'
 
 # Application definition
 
@@ -41,7 +51,10 @@ INSTALLED_APPS = [
     'sass_processor',
     'store',
     'django_filters',
-    'pipeline'
+    'pipeline',
+    'storages',
+    'django_otp',
+    'django_otp.plugins.otp_totp'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +63,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -123,9 +137,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -136,7 +151,7 @@ STATICFILES_FINDERS = [
 
 # TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
-SASS_PROCESSOR_ROOT = STATIC_URL
+# SASS_PROCESSOR_ROOT = STATIC_URL
 
 COMPRESS_ENABLED = True
 
@@ -144,7 +159,7 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
@@ -185,11 +200,36 @@ PIPELINE = {
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_BACKEND = 'django_ses.SESBackend'
-AWS_ACCESS_KEY_ID = 'AKIAXAL67ERBLF2YL5WB'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_SES_REGION_NAME = 'us-east-1'
-AWS_SES_REGION_ENDPOINT = 'email.us-east-1.amazonaws.com'
+# EMAIL_BACKEND = 'django_ses.SESBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('EMAIL_USERNAME')
+EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
+DEFAULT_FROM_EMAIL = 'support@shopstonethrone.com'
+
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_IDst')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEYst')
+AWS_STORAGE_BUCKET_NAME = 'stonethronepictures'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_SES_REGION_NAME = 'us-east-1'
+# AWS_SES_REGION_ENDPOINT = 'email.us-east-1.amazonaws.com'
+# AWS_LOCATION = 'static'
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=86400',
+# }
+
+
+# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 django_on_heroku.settings(locals())
