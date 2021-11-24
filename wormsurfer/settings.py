@@ -1,6 +1,4 @@
 from django.core.handlers import wsgi
-import django_on_heroku
-
 import logging
 from pathlib import Path
 import os
@@ -200,9 +198,9 @@ AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'store/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), 'store']
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "store/static/store")]
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
