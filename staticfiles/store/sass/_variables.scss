@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Nosifer&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,100;1,900&display=swap");
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@font-face {
+  font-family: "StoneThrone";
+  src: url(../../store/font/StoneBird.ttf);
+}
+
+@font-face {
+  font-family: "Helvetica-bold";
+  src: url(../../store/font/HelveticaNowDisplayXBlk.otf) format("opentype");
+}
+
+@keyframes pendulum {
+  0% {
+    transform: rotateZ(-5deg);
+  }
+  100% {
+    transform: rotateZ(5deg);
+  }
+}

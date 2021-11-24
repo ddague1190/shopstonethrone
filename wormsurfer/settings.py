@@ -134,37 +134,22 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'sass_processor.finders.CssFinder',
     'pipeline.finders.PipelineFinder'
+    # 'sass_processor.finders.CssFinder',
 ]
 
 
-COMPRESS_ENABLED = True
+# COMPRESS_ENABLED = True
 
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
+# COMPRESS_PRECOMPILERS = (
+#     ('text/x-scss', 'django_libsass.SassCompiler'),
+# )
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 MEDIA_URL = '/media/'
-
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {"class": "logging.StreamHandler"},
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["console"],
-            "level": "INFO",
-        },
-    }
-}
 
 
 PIPELINE = {
@@ -197,8 +182,18 @@ AWS_DEFAULT_ACL = None
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-STATIC_URL = 'static'
-STATIC_ROOT = os.path.join(BASE_DIR, 'store/static')
+# STATIC_URL = 'static'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'store/static')
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'store/static')
+
+)
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
