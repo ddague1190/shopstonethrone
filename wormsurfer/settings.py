@@ -1,3 +1,4 @@
+from .storage import *
 from django.core.handlers import wsgi
 import logging
 from pathlib import Path
@@ -201,7 +202,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-STATICFILES_STORAGE = 'wormsurfer.storage.WhiteNoiseStaticFilesStorage'
+STATICFILES_STORAGE = WhiteNoisenNoManifest
 
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
