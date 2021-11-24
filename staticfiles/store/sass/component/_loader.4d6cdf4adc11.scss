@@ -1,0 +1,34 @@
+#loader {
+  // display: none;
+  // width: 64px;
+  // height: 64px;
+  // border: 8px solid;
+  // border-color: rgba(78, 67, 3, 0.733) transparent rgba(78, 67, 3, 0.733)
+  //   transparent;
+  // border-radius: 50%;
+  // animation: spin 1.2s linear infinite;
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // z-index: 100;
+
+  left: 50%;
+  top: 50%;
+  left: 50%;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10rem;
+  height: 5rem;
+  background-color: rgba(46, 46, 46, 0.733);
+  border-radius: 10px;
+  z-index: 100;
+  animation: 0.5s infinite alternate scaleLoader;
+  &::after {
+    content: "Loading...";
+    text-align: center;
+    margin-top: 1rem;
+    color: white;
+  }
+}
