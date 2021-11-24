@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
+    'django.contrib.staticfiles',
     'sass_processor',
     'store',
     'django_filters',
@@ -218,7 +219,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
         },
     },
 }
