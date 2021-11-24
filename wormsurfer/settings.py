@@ -1,3 +1,4 @@
+import django_on_heroku
 from django.core.handlers import wsgi
 import logging
 from pathlib import Path
@@ -5,7 +6,6 @@ import os
 from os import environ
 # import dotenv
 from decouple import config
-
 
 # SECURE_SSL_REDIRECT = True
 # SESSION_COOKIE_SECURE = True
@@ -232,3 +232,6 @@ LOGGING = {
         }
     }
 }
+
+
+django_on_heroku.settings(locals())
