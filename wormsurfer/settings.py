@@ -1,7 +1,6 @@
 from django.core.handlers import wsgi
 import django_on_heroku
 
-import django_heroku
 import logging
 from pathlib import Path
 import os
@@ -42,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
     'sass_processor',
     'store',
     'django_filters',
@@ -225,4 +224,4 @@ LOGGING = {
     },
 }
 
-django_heroku.settings(locals(),staticfiles=False)
+django_on_heroku.settings(locals())
