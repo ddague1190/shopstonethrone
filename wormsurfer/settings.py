@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-ALLOWED_HOSTS = ['secure-lowlands-39459.herokuapp.com']
+ALLOWED_HOSTS = ['secure-lowlands-39459.herokuapp.com', '*']
 
 
 SECRET_KEY = config('SECRET_KEYst')
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'sass_processor',
     'store',
@@ -200,7 +201,7 @@ AWS_STORAGE_BUCKET_NAME = 'stonethronepictures'
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -216,30 +217,30 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt': "%d/%b/%Y %H:%M:%S"
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
+                       'pathname=%(pathname)s lineno=%(lineno)s ' +
+                       'funcname=%(funcName)s %(message)s'),
+            'datefmt': '%Y-%m-%d %H:%M:%S'
         },
         'simple': {
             'format': '%(levelname)s %(message)s'
-        },
+        }
     },
     'handlers': {
-        'file': {
+        'null': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'mysite.log',
-            'formatter': 'verbose'
+            'class': 'logging.NullHandler',
         },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
     },
     'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'propagate': True,
-            'level': 'DEBUG',
-        },
-        'wormsurfer': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-        },
+        'testlogger': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        }
     }
 }
