@@ -1,1 +1,1 @@
-web: gunicorn wormsurfer.wsgi
+web: python manage.py collectstatic --no-input; gunicorn wormsurfer.wsgi
