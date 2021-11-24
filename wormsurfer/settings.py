@@ -1,6 +1,7 @@
 from django.core.handlers import wsgi
 import django_on_heroku
 
+import django_heroku
 import logging
 from pathlib import Path
 import os
@@ -206,7 +207,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGGING = {
     'version': 1,
@@ -223,3 +224,5 @@ LOGGING = {
         },
     },
 }
+
+django_heroku.settings(locals(),staticfiles=False)
