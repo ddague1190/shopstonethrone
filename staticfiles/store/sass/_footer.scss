@@ -1,0 +1,28 @@
+.footer {
+  background-color: white;
+  padding-top: 1rem;
+  width: 100%;
+  display: none;
+  color: black;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 300;
+  flex-wrap: wrap;
+  @media only screen and (max-width: 490px) {
+    display: flex;
+  }
+
+  & a {
+  }
+  & a:link {
+    text-decoration: none;
+  }
+
+  &__copyright {
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: 0.3rem;
+  }
+}
