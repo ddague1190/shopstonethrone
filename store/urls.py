@@ -14,7 +14,7 @@ urlpatterns = [
     path('cart', views.cart, name='cart'),
     path('product/<pk>', views.ProductDetailView.as_view(), name='detailproduct'),
     path('contact', views.contact, name='contact')
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     from django.conf.urls.static import static
